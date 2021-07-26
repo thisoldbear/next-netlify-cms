@@ -1,5 +1,6 @@
 backend:
   name: git-gateway
+  repo: thisoldbear/next-netlify-cms
   branch: main # Branch to update (optional; defaults to master)
 media_folder: public/img
 public_folder: img
