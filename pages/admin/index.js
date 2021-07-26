@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 
 const CMS = dynamic(
   () =>
-    import('../../netlify-cms-app'),
+    import('../../netlify-cms-app').then(module => module.CMS),
   { ssr: false },
 );
 
