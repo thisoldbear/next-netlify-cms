@@ -1,6 +1,6 @@
 import CMS from 'netlify-cms-app';
 
-import siteConfig from '../../public/config.yml';
+import siteConfig from './public/config.yml';
 
 CMS.init({
   siteConfig,
