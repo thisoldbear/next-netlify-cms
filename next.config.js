@@ -6,6 +6,13 @@ module.exports = {
       loader: "frontmatter-markdown-loader",
       options: { mode: ["react-component"] },
     });
+
+    cfg.module.rules.push({
+      test: /\.ya?ml$/,
+      use: 'yaml-loader',
+      type: 'json',
+    });
+
     return cfg;
   },
 };
