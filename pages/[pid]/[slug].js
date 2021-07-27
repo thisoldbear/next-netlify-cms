@@ -51,7 +51,7 @@ const Slug = ({ data, content }) => {
   return (
     <div>
       <Template>
-        <h1>{meta?.name}</h1>
+        <h1>{meta?.title}</h1>
         <ReactMarkdown>{content}</ReactMarkdown>
       </Template>
     </div>

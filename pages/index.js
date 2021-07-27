@@ -38,7 +38,7 @@ const Home = ({ data, content }) => {
   return (
     <>
       <article>
-        <h1>{meta.title}</h1>
+        <h1>{meta?.title}</h1>
         <ReactMarkdown>{content}</ReactMarkdown>
         <ul>
           {meta?.cats?.map((cat, k) => (
