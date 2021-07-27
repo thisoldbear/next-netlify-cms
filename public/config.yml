@@ -4,6 +4,10 @@ backend:
   branch: main # Branch to update (optional; defaults to master)
 media_folder: public/img
 public_folder: img
+slug:
+  encoding: 'ascii'
+  clean_accents: true
+  sanitize_replacement: '_'
 collections:
   - name: "pages"
     label: "Pages"
@@ -26,6 +30,7 @@ collections:
     folder: "content/blog"
     create: true
     identifier_field: name
+    slug: "{{slug}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
