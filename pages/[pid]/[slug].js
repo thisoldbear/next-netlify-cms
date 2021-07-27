@@ -1,12 +1,15 @@
-import { Component } from "react";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ ...ctx }) {
+  const { slug } = ctx.params;
+
   let frontmatter = "";
 
   try {
-    const md = await import(`../content/home.md`);
+    const md = await import(`../../content/blog/${slug}.md`);
     frontmatter = md.default;
   } catch (err) {
     return {
@@ -32,25 +35,27 @@ export async function getServerSideProps() {
   };
 }
 
-const Home = ({ data, content }) => {
+const Slug = ({ data, content }) => {
+  const router = useRouter();
+
   const meta = JSON.parse(data);
 
+  let Template;
+
+  if (router.query.pid === "blog") {
+    Template = dynamic(() => import("../../components/Post"));
+  } else {
+    Template = dynamic(() => import("../../components/FallbackTemplate"));
+  }
+
   return (
-    <>
-      <article>
-        <h1>{meta.title}</h1>
+    <div>
+      <Template>
+        <h1>{meta?.name}</h1>
         <ReactMarkdown>{content}</ReactMarkdown>
-        <ul>
-          {meta?.cats?.map((cat, k) => (
-            <li key={k}>
-              <h2>{cat.name}</h2>
-              <p>{cat.description}</p>
-            </li>
-          ))}
-        </ul>
-      </article>
-    </>
+      </Template>
+    </div>
   );
 };
 
-export default Home;
+export default Slug;

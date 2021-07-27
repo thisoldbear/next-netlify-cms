@@ -1,18 +1,16 @@
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 
 const CMS = dynamic(
-  () =>
-    import('../../netlify-cms-app').then(module => module.CMS),
-  { ssr: false },
+  () => import("../../netlify-cms-app").then((module) => module.CMS),
+  { ssr: false }
 );
 
 function Admin() {
   return (
     <div>
-        <CMS />
-
+      <CMS />
     </div>
-  )
+  );
 }
 
-export default Admin
+export default Admin;
